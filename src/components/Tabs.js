@@ -171,6 +171,7 @@ module.exports = React.createClass({
     // Add ids if new tabs have been added
     // Don't bother removing ids, just keep them in case they are added again
     // This is more efficient, and keeps the uuid counter under control
+    if (!process.browser) uuid.reset();
     while (diff++ < 0) {
       tabIds.push(uuid());
       panelIds.push(uuid());
