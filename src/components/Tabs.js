@@ -1,7 +1,6 @@
 import React, { PropTypes, cloneElement } from 'react';
 import { findDOMNode } from 'react-dom';
 import cx from 'classnames';
-import jss from 'js-stylesheet';
 import uuid from '../helpers/uuid';
 import childrenPropType from '../helpers/childrenPropType';
 
@@ -14,8 +13,6 @@ function isTabNode(node) {
 function isTabDisabled(node) {
   return node.getAttribute('aria-disabled') === 'true';
 }
-
-let useDefaultStyles = true;
 
 module.exports = React.createClass({
   displayName: 'Tabs',
@@ -31,12 +28,6 @@ module.exports = React.createClass({
 
   childContextTypes: {
     forceRenderTabPanel: PropTypes.bool,
-  },
-
-  statics: {
-    setUseDefaultStyles(use) {
-      useDefaultStyles = use;
-    },
   },
 
   getDefaultProps() {
@@ -55,12 +46,6 @@ module.exports = React.createClass({
     return {
       forceRenderTabPanel: this.props.forceRenderTabPanel,
     };
-  },
-
-  componentDidMount() {
-    if (useDefaultStyles) {
-      jss(require('../helpers/styles.js')); // eslint-disable-line global-require
-    }
   },
 
   componentWillReceiveProps(newProps) {
